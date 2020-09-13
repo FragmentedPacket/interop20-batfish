@@ -3,13 +3,13 @@ interfaces:
     enabled: True
     description: "to GigabitEthernet1.isp-1"
     ip_address: "67.128.128.2/24"
-    acl_in: 101
+    acl_in: 110
   - name: "GigabitEthernet2"
     enabled: True
     description: "to GigabitEthernet0/0.fw-1"
     ip_address: "10.255.255.1/30"
     acl_out: 299
   - name: "GigabitEthernet3"
-    enabled: True
+    enabled: False
   - name: "GigabitEthernet4"
-    enabled: True
+    enabled: False
