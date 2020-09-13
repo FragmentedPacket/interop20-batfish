@@ -7,6 +7,7 @@ dist: bionic
 before_script:
   - pip install -U pip
   - pip install -r requirements.txt
+  - ansible-galaxy install --force batfish.base
 
 script:
   - ansible-playbook -i inventory/inventory pb.batfish.validate_facts.yml
