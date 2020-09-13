@@ -1,0 +1,10 @@
+interfaces:
+  - name: "Loopback1"
+    ip_address: "8.8.8.8/32"
+  - name: "Loopback2"
+    ip_address: "1.1.1.1/32"
+  - name: "GigabitEthernet1"
+    ip_address: "67.128.128.1/24"
+  - name: "GigabitEthernet2"
+  - name: "GigabitEthernet3"
+  - name: "GigabitEthernet4"

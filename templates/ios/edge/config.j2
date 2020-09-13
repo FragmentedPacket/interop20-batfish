@@ -1,0 +1,172 @@
+version 15.8
+service timestamps debug datetime msec
+service timestamps log datetime msec
+no service password-encryption
+!
+hostname {{ inventory_hostname }}
+!
+boot-start-marker
+boot-end-marker
+!
+!
+no logging console
+enable secret 4 tnhtc92DXBhelxjYk8LWJrPV36S2i4ntXrpb4RFmfqY
+enable password cisco
+!
+no aaa new-model
+!
+!
+!
+mmi polling-interval 60
+no mmi auto-configure
+no mmi pvc
+mmi snmp-timeout 180
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+no ip domain lookup
+ip domain name virl.info
+ip cef
+no ipv6 cef
+!
+multilink bundle-name authenticated
+!
+!
+!
+!
+username cisco privilege 15 secret 5 $1$0Jxj$PHdORKSrzFsEwWMIMbNoK1
+!
+redundancy
+!
+!
+! 
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+{% for intf in interfaces %}
+interface {{ intf['name'] }}
+ {% if intf.get('description') %}
+ description {{ intf['description'] }}
+ {% endif %}
+ {% if intf.get('ip_address') %}
+ ip address {{ intf['ip_address'] | ipaddr('address') }} {{ intf['ip_address'] | ipaddr('netmask') }}
+ {% else %}
+ no ip address
+ {% endif %}
+ {% if intf.get('acl_in') %}
+ ip access-group {{ intf['acl_in'] }} in
+ {% endif %}
+ {% if intf.get('acl_out') %}
+ ip access-group {{ intf['acl_out'] }} out
+ {% endif %}
+ {% if intf.get('enabled') and intf['enabled'] == True%}}
+ no shutdown
+ {% else %}
+ shutdown
+ {% endif %}
+!
+{% endfor %}
+!
+{% if ospf is defined %}
+router ospf {{ ospf['process'] }}
+ {% for network in ospf['networks'] %}
+ {% set ip_network = network['ip_network'] | ipaddr('network') %}
+ {% set wildcard = network['ip_network'] | ipaddr('wildcard') %}
+ network {{ ip_network }} {{ wildcard }} area {{ network['area'] }}
+ {% endfor %}
+ {% if ospf['default_info_orig'] %}
+ default-information originate
+ {% endif %}
+{% endif %}
+!
+{% if bgp is defined %}
+router bgp {{ bgp['asn'] }}
+ bgp router-id {{ bgp['router_id'] }}
+ bgp log-neighbor-changes
+ {% for network in bgp['networks'] %}
+ {% set ip_network = network | ipaddr('network') %}
+ {% set netmask = network | ipaddr('netmask') %}
+ network {{ ip_network }} mask {{ netmask }}
+ {% endfor %}
+ {% for neighbor in bgp['neighbors'] %}
+ neighbor {{ neighbor['ip_address'] }} remote-as {{ neighbor['remote_as'] }}
+ {% endfor %}
+{% endif %}
+!
+ip forward-protocol nd
+!
+!
+no ip http server
+no ip http secure-server
+{% if static_routes is defined %}
+{% for static in static_routes %}
+{% set network = static['ip_network'] | ipaddr('network') %}
+{% set netmask = static['ip_network'] | ipaddr('netmask') %}
+ip route {{ network }} {{ netmask}} {{ static['next_hop'] }}
+{% endfor %}
+{% endif %}
+ip ssh server algorithm authentication password
+!
+ip access-list extended 110
+ deny ip 127.0.0.0 0.255.255.255 any
+ deny ip 192.0.2.0 0.0.0.255 any
+ deny ip 224.0.0.0 31.255.255.255 any
+ deny ip host 255.255.255.255 any
+ deny ip 10.0.0.0 0.255.255.255 any
+ deny ip 172.16.0.0 0.15.255.255 any
+ deny ip 192.168.0.0 0.0.255.255 any
+ permit tcp host 67.128.128.1 host 67.128.128.2 eq bgp
+ permit tcp host 67.128.128.1 eq bgp host 67.128.128.2 gt 1023
+!
+{% for server in syslog_servers %}
+logging host {{ server }}
+{% endfor %}
+ipv6 ioam timestamp
+!
+!
+!
+control-plane
+!
+banner login ^C
+**************************************************************************
+* IOSv is strictly limited to use for evaluation, demonstration and IOS  *
+* education. IOSv is provided as-is and is not supported by Cisco's      *
+* Technical Advisory Center. Any use or disclosure, in whole or in part, *
+* of the IOSv Software or Documentation to any third party for any       *
+* purposes is expressly prohibited except as otherwise authorized by     *
+* Cisco in writing.                                                      *
+**************************************************************************^C
+!
+line con 0
+ exec-timeout 0 0
+ password cisco
+line aux 0
+line vty 0 4
+ exec-timeout 720 0
+ password cisco
+ login local
+ transport input telnet ssh
+!
+no scheduler allocate
+{% for ntp in ntp_servers %}
+ntp server {{ ntp }}
+{% endfor %}
+!
+end

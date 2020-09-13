@@ -1,0 +1,11 @@
+---
+- hosts: all
+  connection: local
+  gather_facts: no
+
+  tasks:
+    - name: "GENERATE DEVICE CONFIGURATIONS"
+      template:
+        src: "{{ ansible_network_os }}/{{ role }}/config.j2"
+        dest: "configs/{{ inventory_hostname }}.cfg"
+        lstrip_blocks: yes

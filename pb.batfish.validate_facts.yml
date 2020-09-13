@@ -1,0 +1,37 @@
+---
+- hosts: localhost
+  connection: local
+  gather_facts: no
+  roles:
+    - batfish.base
+
+  tasks:
+    - name: "SETUP CONNECTION TO BATFISH SERVICE"
+      bf_session:
+        host: "{{ batfish_host }}"
+        name: "ci_batfish"
+
+    - name: "INITIALIZE THE GENERATED CONFIGS"
+      bf_init_snapshot:
+        network: "ci_network"
+        snapshot: "ci_snapshot"
+        snapshot_data: "."
+        overwrite: yes
+
+    - name: "VALIDATE FACTS"
+      bf_validate_facts:
+        expected_facts: "ci/expected_facts/"
+
+    - name: "VALIDATE BASIC TOPOLOGY QUESTIONS PASS"
+      bf_assert:
+        assertions:
+          - type: "assert_no_undefined_references"
+            name: "Confirm we have no undefined references"
+          - type: "assert_no_forwarding_loops"
+            name: "Confirm no routing loops"
+          - type: "assert_no_incompatible_bgp_sessions"
+            name: "Confirm no incompatible BGP sessions"
+          - type: "assert_no_incompatible_ospf_sessions"
+            name: "Confirm no incompatible OSPF sessions"
+          - type: "assert_no_unestablished_bgp_sessions"
+            name: "Confirm no unestablished BGP sessions"

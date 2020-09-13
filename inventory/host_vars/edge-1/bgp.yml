@@ -1,0 +1,9 @@
+bgp:
+  asn: 65000
+  router_id: "67.128.128.2"
+  networks:
+    - "67.129.129.0/24"
+    - "67.130.130.0/24"
+  neighbors:
+    - ip_address: "67.128.128.1"
+      remote_as: 1234

@@ -1,0 +1,11 @@
+---
+ospf:
+  default_info_orig: False
+  process: 10
+  networks:
+    - ip_network: "10.255.255.12/30"
+      area: 0
+    - ip_network: "10.255.255.20/30"
+      area: 0
+    - ip_network: "10.255.255.24/30"
+      area: 0

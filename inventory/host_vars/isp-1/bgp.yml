@@ -1,0 +1,8 @@
+bgp:
+  asn: 1234
+  networks:
+    - "1.1.1.1/32"
+    - "8.8.8.8/32"
+  neighbors:
+    - ip_address: "67.128.128.2"
+      remote_as: 65000

@@ -1,0 +1,298 @@
+nodes:
+  core-1:
+    AS_Path_Access_Lists: []
+    Authentication_Key_Chains: []
+    Community_Lists: []
+    Configuration_Format: CISCO_IOS
+    DNS:
+      DNS_Servers: []
+      DNS_Source_Interface: null
+    Default_Cross_Zone_Action: PERMIT
+    Default_Inbound_Action: PERMIT
+    Domain_Name: virl.info
+    Hostname: core-1
+    IP6_Access_Lists: []
+    IP_Access_Lists: []
+    IPsec:
+      IKE_Phase1_Keys: []
+      IKE_Phase1_Policies: []
+      IKE_Phase1_Proposals: []
+      IPsec_Peer_Configs: []
+      IPsec_Phase2_Policies: []
+      IPsec_Phase2_Proposals: []
+    Interfaces:
+      GigabitEthernet0/0:
+        Access_VLAN: null
+        Active: false
+        All_Prefixes: []
+        Allowed_VLANs: ""
+        Auto_State_VLAN: true
+        Bandwidth: 1000000000.0
+        Blacklisted: false
+        Channel_Group: null
+        Channel_Group_Members: []
+        DHCP_Relay_Addresses: []
+        Declared_Names:
+          - GigabitEthernet0/0
+        Description: null
+        Encapsulation_VLAN: null
+        HSRP_Groups: []
+        HSRP_Version: null
+        Incoming_Filter_Name: null
+        MLAG_ID: null
+        MTU: 1500
+        Native_VLAN: null
+        Outgoing_Filter_Name: null
+        PBR_Policy_Name: null
+        Primary_Address: null
+        Primary_Network: null
+        Proxy_ARP: true
+        Rip_Enabled: false
+        Rip_Passive: false
+        Spanning_Tree_Portfast: false
+        Speed: 1000000000.0
+        Switchport: false
+        Switchport_Mode: NONE
+        Switchport_Trunk_Encapsulation: DOT1Q
+        VRF: default
+        VRRP_Groups: []
+        Zone_Name: null
+      GigabitEthernet0/1:
+        Access_VLAN: null
+        Active: true
+        All_Prefixes:
+          - 10.255.255.6/30
+        Allowed_VLANs: ""
+        Auto_State_VLAN: true
+        Bandwidth: 1000000000.0
+        Blacklisted: false
+        Channel_Group: null
+        Channel_Group_Members: []
+        DHCP_Relay_Addresses: []
+        Declared_Names:
+          - GigabitEthernet0/1
+        Description: to GigabitEthernet0/1.fw-1
+        Encapsulation_VLAN: null
+        HSRP_Groups: []
+        HSRP_Version: null
+        Incoming_Filter_Name: null
+        MLAG_ID: null
+        MTU: 1500
+        Native_VLAN: null
+        Outgoing_Filter_Name: null
+        PBR_Policy_Name: null
+        Primary_Address: 10.255.255.6/30
+        Primary_Network: 10.255.255.4/30
+        Proxy_ARP: true
+        Rip_Enabled: false
+        Rip_Passive: false
+        Spanning_Tree_Portfast: false
+        Speed: 1000000000.0
+        Switchport: false
+        Switchport_Mode: NONE
+        Switchport_Trunk_Encapsulation: DOT1Q
+        VRF: default
+        VRRP_Groups: []
+        Zone_Name: null
+      GigabitEthernet0/2:
+        Access_VLAN: null
+        Active: true
+        All_Prefixes:
+          - 10.255.255.9/30
+        Allowed_VLANs: ""
+        Auto_State_VLAN: true
+        Bandwidth: 1000000000.0
+        Blacklisted: false
+        Channel_Group: null
+        Channel_Group_Members: []
+        DHCP_Relay_Addresses: []
+        Declared_Names:
+          - GigabitEthernet0/2
+        Description: to GigabitEthernet0/1.core-2
+        Encapsulation_VLAN: null
+        HSRP_Groups: []
+        HSRP_Version: null
+        Incoming_Filter_Name: null
+        MLAG_ID: null
+        MTU: 1500
+        Native_VLAN: null
+        Outgoing_Filter_Name: null
+        PBR_Policy_Name: null
+        Primary_Address: 10.255.255.9/30
+        Primary_Network: 10.255.255.8/30
+        Proxy_ARP: true
+        Rip_Enabled: false
+        Rip_Passive: false
+        Spanning_Tree_Portfast: false
+        Speed: 1000000000.0
+        Switchport: false
+        Switchport_Mode: NONE
+        Switchport_Trunk_Encapsulation: DOT1Q
+        VRF: default
+        VRRP_Groups: []
+        Zone_Name: null
+      GigabitEthernet0/3:
+        Access_VLAN: null
+        Active: true
+        All_Prefixes:
+          - 10.255.255.13/30
+        Allowed_VLANs: ""
+        Auto_State_VLAN: true
+        Bandwidth: 1000000000.0
+        Blacklisted: false
+        Channel_Group: null
+        Channel_Group_Members: []
+        DHCP_Relay_Addresses: []
+        Declared_Names:
+          - GigabitEthernet0/3
+        Description: to GigabitEthernet0/1.core-3
+        Encapsulation_VLAN: null
+        HSRP_Groups: []
+        HSRP_Version: null
+        Incoming_Filter_Name: null
+        MLAG_ID: null
+        MTU: 1500
+        Native_VLAN: null
+        Outgoing_Filter_Name: null
+        PBR_Policy_Name: null
+        Primary_Address: 10.255.255.13/30
+        Primary_Network: 10.255.255.12/30
+        Proxy_ARP: true
+        Rip_Enabled: false
+        Rip_Passive: false
+        Spanning_Tree_Portfast: false
+        Speed: 1000000000.0
+        Switchport: false
+        Switchport_Mode: NONE
+        Switchport_Trunk_Encapsulation: DOT1Q
+        VRF: default
+        VRRP_Groups: []
+        Zone_Name: null
+      Loopback0:
+        Access_VLAN: null
+        Active: true
+        All_Prefixes: []
+        Allowed_VLANs: ""
+        Auto_State_VLAN: true
+        Bandwidth: 8000000000.0
+        Blacklisted: false
+        Channel_Group: null
+        Channel_Group_Members: []
+        DHCP_Relay_Addresses: []
+        Declared_Names:
+          - Loopback0
+        Description: null
+        Encapsulation_VLAN: null
+        HSRP_Groups: []
+        HSRP_Version: null
+        Incoming_Filter_Name: null
+        MLAG_ID: null
+        MTU: 1500
+        Native_VLAN: null
+        Outgoing_Filter_Name: null
+        PBR_Policy_Name: null
+        Primary_Address: null
+        Primary_Network: null
+        Proxy_ARP: true
+        Rip_Enabled: false
+        Rip_Passive: false
+        Spanning_Tree_Portfast: false
+        Speed: null
+        Switchport: false
+        Switchport_Mode: NONE
+        Switchport_Trunk_Encapsulation: DOT1Q
+        VRF: default
+        VRRP_Groups: []
+        Zone_Name: null
+      Loopback1:
+        Access_VLAN: null
+        Active: true
+        All_Prefixes:
+          - 192.168.100.1/32
+        Allowed_VLANs: ""
+        Auto_State_VLAN: true
+        Bandwidth: 8000000000.0
+        Blacklisted: false
+        Channel_Group: null
+        Channel_Group_Members: []
+        DHCP_Relay_Addresses: []
+        Declared_Names:
+          - Loopback1
+        Description: null
+        Encapsulation_VLAN: null
+        HSRP_Groups: []
+        HSRP_Version: null
+        Incoming_Filter_Name: null
+        MLAG_ID: null
+        MTU: 1500
+        Native_VLAN: null
+        Outgoing_Filter_Name: null
+        PBR_Policy_Name: null
+        Primary_Address: 192.168.100.1/32
+        Primary_Network: 192.168.100.1/32
+        Proxy_ARP: true
+        Rip_Enabled: false
+        Rip_Passive: false
+        Spanning_Tree_Portfast: false
+        Speed: null
+        Switchport: false
+        Switchport_Mode: NONE
+        Switchport_Trunk_Encapsulation: DOT1Q
+        VRF: default
+        VRRP_Groups: []
+        Zone_Name: null
+    NTP:
+      NTP_Servers:
+        - 10.255.255.5
+      NTP_Source_Interface: null
+    OSPF:
+      Processes:
+        "10":
+          Areas:
+            "0":
+              Area_Type: NONE
+              Interfaces:
+                GigabitEthernet0/2:
+                  Cost: 1
+                  Dead_Interval: 40
+                  Enabled: true
+                  Hello_Interval: 10
+                  Network_Type: BROADCAST
+                  Passive: false
+                GigabitEthernet0/3:
+                  Cost: 1
+                  Dead_Interval: 40
+                  Enabled: true
+                  Hello_Interval: 10
+                  Network_Type: BROADCAST
+                  Passive: false
+                Loopback1:
+                  Cost: 1
+                  Dead_Interval: 40
+                  Enabled: true
+                  Hello_Interval: 10
+                  Network_Type: BROADCAST
+                  Passive: false
+          Reference_Bandwidth: 100000000.0
+          Router_ID: 192.168.100.1
+          VRF: default
+    PBR_Policies: []
+    Route6_Filter_Lists: []
+    Route_Filter_Lists: []
+    Routing_Policies: []
+    SNMP:
+      SNMP_Source_Interface: null
+      SNMP_Trap_Servers: []
+    Syslog:
+      Logging_Servers:
+        - 172.16.1.1
+        - 172.16.2.1
+        - 192.168.1.1
+      Logging_Source_Interface: null
+    TACACS:
+      TACACS_Servers: []
+      TACACS_Source_Interface: null
+    VRFs:
+      - default
+    Zones: []
+version: batfish_v0

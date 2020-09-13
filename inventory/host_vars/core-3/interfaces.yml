@@ -1,0 +1,16 @@
+interfaces:
+  - name: "Loopback0"
+    enabled: True
+  - name: "GigabitEthernet0/0"
+  - name: "GigabitEthernet0/1"
+    enabled: True
+    description: "GigabitEthernet0/3.core-1"
+    ip_address: "10.255.255.14/30"
+  - name: "GigabitEthernet0/2"
+    enabled: True
+    description: "GigabitEthernet0/2.dist-1"
+    ip_address: "10.255.255.22/30"
+  - name: "GigabitEthernet0/3"
+    enabled: True
+    description: "GigabitEthernet0/3.core-2"
+    ip_address: "10.255.255.25/30"
