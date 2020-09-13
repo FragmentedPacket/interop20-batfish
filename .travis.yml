@@ -7,10 +7,11 @@ os: linux
 dist: bionic
 
 before_script:
+  - docker run --name batfish -d -v batfish-data:/data -p 8888:8888 -p 9997:9997 -p 9996:9996 batfish/allinone
   - pip install -U pip
   - pip install -r requirements.txt
   - ansible-galaxy install --force batfish.base
-  - docker run --name batfish -d -v batfish-data:/data -p 8888:8888 -p 9997:9997 -p 9996:9996 batfish/allinone
 
 script:
   - ansible-playbook -i inventory/inventory pb.batfish.validate_facts.yml
+  - ansible-playbook -i inventory/inventory pb.batfish.validate_firewall.yml

@@ -1,0 +1,49 @@
+---
+- hosts: fw
+  connection: local
+  gather_facts: no
+  roles:
+    - batfish.base
+
+  tasks:
+    - name: "SETUP CONNECTION TO BATFISH SERVICE"
+      bf_session:
+        host: "{{ batfish_host }}"
+        name: "ci_batfish"
+      delegate_to: "localhost"
+      run_once: yes
+
+    - name: "INITIALIZE THE GENERATED CONFIGS"
+      bf_init_snapshot:
+        network: "ci_network"
+        snapshot: "ci_fw_snapshot"
+        snapshot_data: "."
+        overwrite: yes
+      delegate_to: "localhost"
+      run_once: yes
+
+    - name: "VALIDATE HTTP & RDP ARE NOT AVAILABLE EXTERNALLY"
+      bf_assert:
+        assertions:
+          - type: "assert_filter_denies"
+            name: "Confirm HTTP is not allowed externally"
+            parameters:
+              filters: '{{ inventory_hostname }}["outside_access_in"]'
+              headers:
+                applications: "http"
+          - type: "assert_filter_denies"
+            name: "Confirm RDP is not allowed externally"
+            parameters:
+              filters: '{{ inventory_hostname }}["outside_access_in"]'
+              headers:
+                applications: "tcp/3389"
+      delegate_to: "localhost"
+
+    - name: "VALIDATE NO UNREACHABLE LINES ON FIREWALL ACLS"
+      bf_assert:
+        assertions:
+          - type: "assert_filter_has_no_unreachable_lines"
+            name: "Confirm outside_access_in has no unreachable lines"
+            parameters:
+              filters: '{{ inventory_hostname }}["outside_access_in"]'
+      delegate_to: "localhost"
