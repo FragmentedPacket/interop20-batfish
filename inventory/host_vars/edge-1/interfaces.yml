@@ -8,7 +8,6 @@ interfaces:
     enabled: True
     description: "to GigabitEthernet0/0.fw-1"
     ip_address: "10.255.255.1/30"
-    acl_out: 299
   - name: "GigabitEthernet3"
     enabled: False
   - name: "GigabitEthernet4"
