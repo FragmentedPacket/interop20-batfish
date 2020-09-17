@@ -8,3 +8,7 @@ syslog_servers:
 
 ntp_servers:
   - "192.168.100.1"
+
+static_routes:
+  - ip_network: "0.0.0.0/0"
+    next_hop: "10.255.255.25"
